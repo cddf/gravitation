@@ -1,4 +1,4 @@
-package main;
+package objects;
 // @author Dreist
 
 public class Planet {
