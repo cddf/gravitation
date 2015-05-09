@@ -3,6 +3,12 @@
  *
  * @author Dreist
  */
+import math.Function;
+import math.FunctionGravitation;
+import objects.Planet;
+import solver.Solver;
+import solver.SolverEuler;
+
 public class Main {
     double _h;
 
@@ -11,7 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         
-      System.out.println("Irgendwann wird hier das ganze Programm gestartet..."); 
+      System.out.println("Irgendwann wird hier das Programm gestartet..."); 
     }
     
     

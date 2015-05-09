@@ -1,7 +1,7 @@
 
 package solver;
 
-import main.Planet;
+import objects.Planet;
 
 /**
  *

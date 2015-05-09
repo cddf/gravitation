@@ -1,7 +1,7 @@
 
 package math;
 
-import main.Planet;
+import objects.Planet;
 
 /**
  * @author Dreist
