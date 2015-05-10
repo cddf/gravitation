@@ -3,6 +3,9 @@
  *
  * @author Dreist
  */
+import java.io.FileWriter;
+import java.io.IOException;
+
 import math.Function;
 import math.FunctionGravitation;
 import math.FunctionVelocity;
@@ -11,7 +14,7 @@ import solver.Solver;
 import solver.SolverEuler;
 
 public class Main {
-	double _h;
+	double _h, _G, _dim;
 
 	/**
 	 * @param args the command line arguments
@@ -29,8 +32,8 @@ public class Main {
 
 		Function fG = new FunctionGravitation(0.1, p);
 		Solver sG = new SolverEuler(fG);
-		Function fS = new FunctionVelocity(sG, p, 0.1);
-		Solver sS = new SolverEuler(fS);
+		Function fV = new FunctionVelocity(sG, p, 0.1);
+		Solver sV = new SolverEuler(fV);
 
 		double[][] r = new double[2][3];
 		double[][] dr = new double[2][3];
@@ -39,7 +42,7 @@ public class Main {
 			r[0] = p[0].getPosition();
 			r[1] = p[1].getPosition();
 
-			dr = sS.calculate(r, 0.1, 0.1 * i);
+			dr = sV.calculate(r, 0.1, 0.1 * i);
 			// x += dr
 			for (int m = 0; m < p.length; m++){
 				for (int n = 0; n < r[0].length; n++) {
@@ -53,5 +56,22 @@ public class Main {
 		}
 
 	}
-
+	
+	private void writePlanets(Planet[] p, String name) {
+		try {
+			FileWriter fstream = new FileWriter(name);
+			
+			// File Header
+			fstream.write("# G = " + _G + 
+					"\n# dim = " + _dim);
+			
+			for (int i = 0; i < p.length; i++){
+				fstream.write(p[i].getMass() + " \n");
+			}
+			fstream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
