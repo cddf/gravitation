@@ -30,7 +30,7 @@ public class FunctionGravitation implements Function {
     double[][] F = new double[x.length][3];
 
     for (int i = 0; i < _p.length; i++) {
-      F[i][0] = 0.0;
+      F[i][0] = 0.0; // TODO schöner
       F[i][1] = 0.0;
       F[i][2] = 0.0;
 

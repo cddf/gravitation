@@ -12,14 +12,11 @@ import solver.Solver;
  */
 public class FunctionSpeed implements Function {
   Solver _solver;
-  Function _f;
-  double _h = h;
+  double _h;
 
-  public FunctionSpeed(Solver solver, Planet[] p, double G, double h){
+  public FunctionSpeed(Solver solver, Planet[] p, double h){
     _solver = solver;
     _h = h;
-
-    _f = new FunctionGravitation(G, p);
   }
 
 
@@ -31,5 +28,6 @@ public class FunctionSpeed implements Function {
   @Override
   public double[][] value(double[][] x, double t) {
     double[][] v = _solver.calculate(x, _h, t-_h);
+    return v;
   }
 }
