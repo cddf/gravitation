@@ -8,5 +8,5 @@ import objects.Planet;
  */
 public interface Function {
     
-    public Planet[] value(Planet p[], double t);
+  public double[][] value(double x[][], double t);
 }

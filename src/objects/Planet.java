@@ -2,8 +2,8 @@ package objects;
 // @author Dreist
 
 public class Planet {
-  double _mass;
-  double[] _pos, _posNew, _speed, _speedNew;
+  double _mass, _t;
+  double[] _pos, _speed;
 
   /**
    * Constructor von Planet
@@ -12,7 +12,7 @@ public class Planet {
    * @param position Position [x,y,z]
    * @param speed Speed [Vx,Vy,Vz]
    */
-  public Planet(double mass, double[] position, double[] speed){
+  public Planet(double mass, double[] position, double[] speed, double t){
     assert(mass != 0);
     assert(position.length == 3);
     assert(speed.length == 3);
@@ -20,32 +20,23 @@ public class Planet {
     _mass = mass;
     _pos = position;
     _speed = speed;
+    _t = t;
   }
 
   /**
    * Moves the planet in dependence of Force and time difference
    *
    * @param F Force in x,y,z direction
-   * @param dt time difference to the last update
+   * @param t time
    */
-  public void movePlanet(double[] F, double dt) {
+  public void movePlanet(double[] F, double t) {
     assert(F.length == 3);
-    assert(_speedNew == null);
-    assert(_posNew == null);
 
     for (int i = 0; i < 3; i++) {
-      _speedNew[i] += F[i] / _mass;
-      _posNew[i]   += _speedNew[i] * dt;
+      _speed[i] += F[i] / _mass;
+      _pos[i]   += _speed[i] * (t-_t);
     }
-  }
-
-  public void updateChanges()
-  {
-    _speed = _speedNew;
-    _pos = _posNew;
-
-    _speedNew = null;
-    _posNew = null;
+    _t = t;
   }
 
 

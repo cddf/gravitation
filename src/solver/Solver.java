@@ -8,6 +8,10 @@ import objects.Planet;
  * @author Dreist
  */
 public interface Solver {
-    public Planet[] calculate(Planet p[], double h, double t);
+
+  /**
+   * @return result x[] of the next time step t + h
+   */
+  public double[][] calculate(double x[][], double h, double t);
     
 }

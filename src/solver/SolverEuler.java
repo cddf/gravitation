@@ -12,11 +12,14 @@ public class SolverEuler implements Solver {
   }
 
   @Override
-  public Planet[] calculate(Planet p[], double h, double t){
+  public double[][] calculate(double x[][], double h, double t) {
+    double[][] f = _f.value(x, t+h);
 
-
-
-
-    return null;
+    for (int i = 0; i < x[0].length; i++) {
+      for (int j = 0; j < x.length; i++) {
+        x[i][j] += h * f[i][j];
+      }
+    }
+    return x;
   }
 }
