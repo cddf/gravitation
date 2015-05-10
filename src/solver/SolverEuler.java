@@ -1,7 +1,6 @@
 package solver;
 // @author Dreist
 
-import objects.Planet;
 import math.Function;
 
 public class SolverEuler implements Solver {
@@ -14,12 +13,13 @@ public class SolverEuler implements Solver {
   @Override
   public double[][] calculate(double x[][], double h, double t) {
     double[][] f = _f.value(x, t+h);
+    double[][] X = new double[x.length][x[0].length];
 
     for (int i = 0; i < x.length; i++) {
       for (int j = 0; j < x[0].length; j++) {
-        x[i][j] += 0 ;//h * f[i][j];
+        X[i][j] = h * f[i][j];
       }
     }
-    return x;
+    return X;
   }
 }

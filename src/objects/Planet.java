@@ -3,23 +3,23 @@ package objects;
 
 public class Planet {
   double _mass, _t;
-  double[] _pos, _speed;
+  double[] _pos, _velocity;
 
   /**
    * Constructor von Planet
    * 
    * @param mass Mass   
    * @param position Position [x,y,z]
-   * @param speed Speed [Vx,Vy,Vz]
+   * @param velocity Velocity [Vx,Vy,Vz]
    */
-  public Planet(double mass, double[] position, double[] speed, double t){
+  public Planet(double mass, double[] position, double[] velocity, double t){
     assert(mass != 0);
     assert(position.length == 3);
-    assert(speed.length == 3);
+    assert(velocity.length == 3);
 
     _mass = mass;
     _pos = position;
-    _speed = speed;
+    _velocity = velocity;
     _t = t;
   }
 
@@ -29,12 +29,11 @@ public class Planet {
    * @param F Force in x,y,z direction
    * @param t time
    */
-  public void movePlanet(double[] F, double t) {
-    assert(F.length == 3);
+  public void movePlanet(double[] x, double t) {
 
-    for (int i = 0; i < 3; i++) {
-      _speed[i] += F[i] / _mass;
-      _pos[i]   += _speed[i] * (t-_t);
+    for (int i = 0; i < x.length; i++) {
+      _velocity[i] += x[i] / t;
+      _pos[i]   = x[i];
     }
     _t = t;
   }
@@ -47,8 +46,8 @@ public class Planet {
   public double getMass(){
     return _mass;
   }
-  public double[] getSpeed(){
-    return _speed;
+  public double[] getVelocity(){
+    return _velocity;
   }
   public double[] getPosition() {
     return _pos;
